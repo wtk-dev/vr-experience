@@ -113,13 +113,6 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
       setIsSuccess(true)
       trackEvent('booking_form_success', { email: formData.email })
 
-      // Reset after delay
-      setTimeout(() => {
-        setIsSuccess(false)
-        setFormData({ name: '', email: '', city: '', locationType: '' })
-        onClose()
-      }, 3000)
-
     } catch (err) {
       console.error('Submission error:', err)
       setError('Something went wrong. Please try again.')
@@ -130,9 +123,15 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
   }
 
   const handleBackdropClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
+    if (e.target === e.currentTarget && !isSuccess) {
       onClose()
     }
+  }
+
+  const handleGoBack = () => {
+    setIsSuccess(false)
+    setFormData({ name: '', email: '', city: '', locationType: '' })
+    onClose()
   }
 
   return (
@@ -157,13 +156,15 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
             {/* Orange accent line */}
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-vr-cta to-transparent" />
 
-            {/* Close button */}
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 transition-colors z-10"
-            >
-              <X className="w-5 h-5 text-vr-gray" />
-            </button>
+            {/* Close button - hide on success */}
+            {!isSuccess && (
+              <button
+                onClick={onClose}
+                className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 transition-colors z-10"
+              >
+                <X className="w-5 h-5 text-vr-gray" />
+              </button>
+            )}
 
             {/* Content */}
             <div className="p-8 md:p-10">
@@ -189,7 +190,8 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                         name="name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        placeholder="Your name"
+                        placeholder="Your name *"
+                        required
                         className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white placeholder:text-vr-gray/60 focus:outline-none focus:border-vr-cta/50 focus:ring-1 focus:ring-vr-cta/50 transition-all"
                       />
                     </div>
@@ -202,7 +204,8 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        placeholder="Email address"
+                        placeholder="Email address *"
+                        required
                         className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white placeholder:text-vr-gray/60 focus:outline-none focus:border-vr-cta/50 focus:ring-1 focus:ring-vr-cta/50 transition-all"
                       />
                     </div>
@@ -215,14 +218,15 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                         name="city"
                         value={formData.city}
                         onChange={handleInputChange}
-                        placeholder="Your city"
+                        placeholder="Your city *"
+                        required
                         className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white placeholder:text-vr-gray/60 focus:outline-none focus:border-vr-cta/50 focus:ring-1 focus:ring-vr-cta/50 transition-all"
                       />
                     </div>
 
                     {/* Location Type */}
                     <div>
-                      <p className="text-sm text-vr-gray mb-3">Where would you like the experience?</p>
+                      <p className="text-sm text-vr-gray mb-3">Where would you like the experience? <span className="text-vr-cta">*</span></p>
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         {locationOptions.map((option) => (
                           <button
@@ -278,7 +282,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                   </div>
 
                   <p className="text-center text-vr-gray/50 text-xs mt-6">
-                    We respect your privacy. No spam, ever.
+                    <span className="text-vr-cta">*</span> All fields are required
                   </p>
                 </>
               ) : (
@@ -296,10 +300,18 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                   >
                     <CheckCircle className="w-10 h-10 text-green-500" />
                   </motion.div>
-                  <h3 className="font-display text-2xl font-bold mb-2">Thank You!</h3>
-                  <p className="text-vr-gray">
-                    We&apos;ve received your request and will be in touch soon.
+                  <h3 className="font-display text-2xl font-bold mb-3">Thanks for your inquiry</h3>
+                  <p className="text-vr-gray text-lg mb-8">
+                    We will get in touch with you shortly.
                   </p>
+                  <motion.button
+                    onClick={handleGoBack}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="px-8 py-3 rounded-xl border border-white/20 text-white font-display font-medium hover:bg-white/5 transition-all"
+                  >
+                    Go Back
+                  </motion.button>
                 </motion.div>
               )}
             </div>
