@@ -91,14 +91,16 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
       }
 
       if (GOOGLE_SCRIPT_URL) {
-        // Send to Google Sheets via Apps Script
-        await fetch(GOOGLE_SCRIPT_URL, {
+        // Send to Google Sheets via Apps Script using URL parameters
+        // This is more reliable than JSON body with no-cors mode
+        const params = new URLSearchParams()
+        Object.entries(submissionData).forEach(([key, value]) => {
+          params.append(key, String(value || ''))
+        })
+        
+        await fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, {
           method: 'POST',
           mode: 'no-cors',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(submissionData),
         })
       } else {
         // Log to console if no Google Script URL configured
