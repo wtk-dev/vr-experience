@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { 
   Sparkles, 
@@ -22,9 +22,7 @@ import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import { useTracking } from '@/components/TrackingProvider'
-
-// Booking link - replace with actual link
-const BOOKING_LINK = 'https://calendly.com/your-booking-link'
+import { BookingModal } from '@/components/BookingModal'
 
 // Animation variants
 const fadeInUp = {
@@ -37,12 +35,20 @@ const stagger = {
 }
 
 // CTAButton Component
-function CTAButton({ className = '', children }: { className?: string; children: React.ReactNode }) {
+function CTAButton({ 
+  className = '', 
+  children, 
+  onClick 
+}: { 
+  className?: string; 
+  children: React.ReactNode;
+  onClick?: () => void;
+}) {
   const { trackEvent } = useTracking()
 
   const handleClick = () => {
     trackEvent('cta_click', { location: 'landing_page' })
-    window.open(BOOKING_LINK, '_blank')
+    onClick?.()
   }
 
   return (
@@ -85,7 +91,7 @@ function AnimatedSection({ children, className = '', id }: { children: React.Rea
 }
 
 // Hero Section
-function HeroSection() {
+function HeroSection({ onBookingClick }: { onBookingClick: () => void }) {
   const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 500], [0, 150])
   const opacity = useTransform(scrollY, [0, 300], [1, 0])
@@ -150,7 +156,7 @@ function HeroSection() {
           transition={{ duration: 1, delay: 0.8 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <CTAButton>
+          <CTAButton onClick={onBookingClick}>
             <Calendar className="w-5 h-5" />
             Book Your Experience
           </CTAButton>
@@ -179,7 +185,7 @@ function HeroSection() {
 }
 
 // Video Section
-function VideoSection() {
+function VideoSection({ onBookingClick }: { onBookingClick: () => void }) {
   return (
     <AnimatedSection className="py-24 px-6" id="video">
       <div className="container mx-auto max-w-5xl">
@@ -207,8 +213,8 @@ function VideoSection() {
           </div>
         </motion.div>
 
-        <motion.div variants={fadeInUp} className="text-center mt-12">
-          <CTAButton>
+        <motion.div variants={fadeInUp} className="flex justify-center mt-12">
+          <CTAButton onClick={onBookingClick}>
             <Calendar className="w-5 h-5" />
             Book Now
             <ArrowRight className="w-5 h-5" />
@@ -453,7 +459,7 @@ function ReviewsSection() {
 }
 
 // Final CTA Section
-function FinalCTASection() {
+function FinalCTASection({ onBookingClick }: { onBookingClick: () => void }) {
   return (
     <AnimatedSection className="py-24 px-6 relative">
       <div className="absolute inset-0 overflow-hidden">
@@ -485,7 +491,7 @@ function FinalCTASection() {
             Limited slots available each week.
           </p>
 
-          <CTAButton className="mx-auto text-lg">
+          <CTAButton className="mx-auto text-lg" onClick={onBookingClick}>
             <Calendar className="w-6 h-6" />
             Book Your Session Now
             <ArrowRight className="w-6 h-6" />
@@ -529,15 +535,22 @@ function Footer() {
 
 // Main Page Component
 export default function Home() {
+  const [isBookingOpen, setIsBookingOpen] = useState(false)
+
+  const openBooking = () => setIsBookingOpen(true)
+  const closeBooking = () => setIsBookingOpen(false)
+
   return (
     <main className="overflow-hidden">
-      <HeroSection />
-      <VideoSection />
+      <HeroSection onBookingClick={openBooking} />
+      <VideoSection onBookingClick={openBooking} />
       <ExperienceSection />
       <BenefitsSection />
       <ReviewsSection />
-      <FinalCTASection />
+      <FinalCTASection onBookingClick={openBooking} />
       <Footer />
+      
+      <BookingModal isOpen={isBookingOpen} onClose={closeBooking} />
     </main>
   )
 }
