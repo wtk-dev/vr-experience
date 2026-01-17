@@ -145,15 +145,15 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
           onClick={handleBackdropClick}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4"
           style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)', backdropFilter: 'blur(8px)' }}
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 100 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="relative w-full max-w-lg glass rounded-3xl shadow-elegant-lg overflow-hidden"
+            className="relative w-full sm:max-w-lg glass rounded-t-3xl sm:rounded-3xl shadow-elegant-lg overflow-hidden max-h-[90vh] sm:max-h-[85vh] flex flex-col"
           >
             {/* Orange accent line */}
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-vr-cta to-transparent" />
@@ -168,25 +168,25 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
               </button>
             )}
 
-            {/* Content */}
-            <div className="p-8 md:p-10">
+            {/* Content - scrollable on mobile */}
+            <div className="p-5 sm:p-8 md:p-10 overflow-y-auto flex-1">
               {!isSuccess ? (
                 <>
                   {/* Header */}
-                  <div className="text-center mb-8">
-                    <h2 className="font-display text-2xl md:text-3xl font-bold mb-2">
+                  <div className="text-center mb-5 sm:mb-8">
+                    <h2 className="font-display text-xl sm:text-2xl md:text-3xl font-bold mb-2">
                       Book Your <span className="gradient-text">VR Experience</span>
                     </h2>
-                    <p className="text-vr-gray">
+                    <p className="text-vr-gray text-sm sm:text-base">
                       Tell us a bit about yourself and we&apos;ll get back to you shortly
                     </p>
                   </div>
 
                   {/* Form */}
-                  <div className="space-y-5">
+                  <div className="space-y-4 sm:space-y-5">
                     {/* Name */}
                     <div className="relative">
-                      <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-vr-gray" />
+                      <User className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-vr-gray" />
                       <input
                         type="text"
                         name="name"
@@ -194,13 +194,14 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                         onChange={handleInputChange}
                         placeholder="Your name *"
                         required
-                        className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white placeholder:text-vr-gray/60 focus:outline-none focus:border-vr-cta/50 focus:ring-1 focus:ring-vr-cta/50 transition-all"
+                        autoComplete="name"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl py-3 sm:py-4 pl-10 sm:pl-12 pr-4 text-sm sm:text-base text-white placeholder:text-vr-gray/60 focus:outline-none focus:border-vr-cta/50 focus:ring-1 focus:ring-vr-cta/50 transition-all"
                       />
                     </div>
 
                     {/* Email */}
                     <div className="relative">
-                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-vr-gray" />
+                      <Mail className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-vr-gray" />
                       <input
                         type="email"
                         name="email"
@@ -208,13 +209,15 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                         onChange={handleInputChange}
                         placeholder="Email address *"
                         required
-                        className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white placeholder:text-vr-gray/60 focus:outline-none focus:border-vr-cta/50 focus:ring-1 focus:ring-vr-cta/50 transition-all"
+                        autoComplete="email"
+                        inputMode="email"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl py-3 sm:py-4 pl-10 sm:pl-12 pr-4 text-sm sm:text-base text-white placeholder:text-vr-gray/60 focus:outline-none focus:border-vr-cta/50 focus:ring-1 focus:ring-vr-cta/50 transition-all"
                       />
                     </div>
 
                     {/* City */}
                     <div className="relative">
-                      <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-vr-gray" />
+                      <MapPin className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-vr-gray" />
                       <input
                         type="text"
                         name="city"
@@ -222,29 +225,30 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                         onChange={handleInputChange}
                         placeholder="Your city *"
                         required
-                        className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white placeholder:text-vr-gray/60 focus:outline-none focus:border-vr-cta/50 focus:ring-1 focus:ring-vr-cta/50 transition-all"
+                        autoComplete="address-level2"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl py-3 sm:py-4 pl-10 sm:pl-12 pr-4 text-sm sm:text-base text-white placeholder:text-vr-gray/60 focus:outline-none focus:border-vr-cta/50 focus:ring-1 focus:ring-vr-cta/50 transition-all"
                       />
                     </div>
 
                     {/* Location Type */}
                     <div>
-                      <p className="text-sm text-vr-gray mb-3">Where would you like the experience? <span className="text-vr-cta">*</span></p>
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      <p className="text-xs sm:text-sm text-vr-gray mb-2 sm:mb-3">Where would you like the experience? <span className="text-vr-cta">*</span></p>
+                      <div className="grid grid-cols-3 gap-2 sm:gap-3">
                         {locationOptions.map((option) => (
                           <button
                             key={option.value}
                             type="button"
                             onClick={() => handleLocationSelect(option.value as LocationType)}
                             className={`
-                              flex flex-col items-center gap-2 p-4 rounded-xl border transition-all
+                              flex flex-col items-center gap-1 sm:gap-2 p-2 sm:p-4 rounded-xl border transition-all
                               ${formData.locationType === option.value
                                 ? 'bg-vr-cta/20 border-vr-cta text-white'
                                 : 'bg-white/5 border-white/10 text-vr-gray hover:border-white/20'
                               }
                             `}
                           >
-                            <option.icon className={`w-5 h-5 ${formData.locationType === option.value ? 'text-vr-cta' : ''}`} />
-                            <span className="text-sm text-center">{option.label}</span>
+                            <option.icon className={`w-4 h-4 sm:w-5 sm:h-5 ${formData.locationType === option.value ? 'text-vr-cta' : ''}`} />
+                            <span className="text-[10px] sm:text-sm text-center leading-tight">{option.label}</span>
                           </button>
                         ))}
                       </div>
@@ -267,23 +271,23 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                       disabled={isSubmitting}
                       whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
                       whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-                      className="w-full bg-vr-cta hover:bg-vr-cta-hover text-white font-display font-semibold py-4 rounded-xl cta-glow flex items-center justify-center gap-2 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+                      className="w-full bg-vr-cta hover:bg-vr-cta-hover text-white font-display font-semibold py-3 sm:py-4 rounded-xl cta-glow flex items-center justify-center gap-2 transition-all disabled:opacity-70 disabled:cursor-not-allowed text-sm sm:text-base"
                     >
                       {isSubmitting ? (
                         <>
-                          <Loader2 className="w-5 h-5 animate-spin" />
+                          <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
                           Sending...
                         </>
                       ) : (
                         <>
                           Continue
-                          <ArrowRight className="w-5 h-5" />
+                          <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                         </>
                       )}
                     </motion.button>
                   </div>
 
-                  <p className="text-center text-vr-gray/50 text-xs mt-6">
+                  <p className="text-center text-vr-gray/50 text-xs mt-4 sm:mt-6 pb-2">
                     <span className="text-vr-cta">*</span> All fields are required
                   </p>
                 </>
@@ -292,25 +296,25 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-8"
+                  className="text-center py-6 sm:py-8"
                 >
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: 'spring', stiffness: 200, delay: 0.1 }}
-                    className="w-20 h-20 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-6"
+                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-4 sm:mb-6"
                   >
-                    <CheckCircle className="w-10 h-10 text-green-500" />
+                    <CheckCircle className="w-8 h-8 sm:w-10 sm:h-10 text-green-500" />
                   </motion.div>
-                  <h3 className="font-display text-2xl font-bold mb-3">Thanks for your inquiry</h3>
-                  <p className="text-vr-gray text-lg mb-8">
+                  <h3 className="font-display text-xl sm:text-2xl font-bold mb-2 sm:mb-3">Thanks for your inquiry</h3>
+                  <p className="text-vr-gray text-base sm:text-lg mb-6 sm:mb-8 px-4">
                     We will get in touch with you shortly.
                   </p>
                   <motion.button
                     onClick={handleGoBack}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="px-8 py-3 rounded-xl border border-white/20 text-white font-display font-medium hover:bg-white/5 transition-all"
+                    className="px-6 sm:px-8 py-3 rounded-xl border border-white/20 text-white font-display font-medium hover:bg-white/5 transition-all text-sm sm:text-base"
                   >
                     Go Back
                   </motion.button>

@@ -115,6 +115,26 @@ body {
   box-shadow: 0 0 60px rgba(255, 107, 53, 0.6);
 }
 
+/* Mobile keyboard handling */
+@supports (height: 100dvh) {
+  .modal-container {
+    height: 100dvh;
+  }
+}
+
+/* Smooth input focus on mobile */
+input:focus {
+  scroll-margin-bottom: 100px;
+}
+
+/* Prevent zoom on input focus on iOS */
+@media screen and (max-width: 640px) {
+  input[type="text"],
+  input[type="email"] {
+    font-size: 16px;
+  }
+}
+
 /* Video container aspect ratio */
 .video-container {
   position: relative;
