@@ -259,7 +259,7 @@ function ExperienceSection() {
             <span className="gradient-text">Anywhere</span>
           </h2>
           <p className="text-vr-gray text-lg max-w-2xl mx-auto">
-            We provide 10-20 premium VR headsets with a variety of games — from heart-pumping shooters to mind-bending puzzles. 
+            We provide premium VR headsets with a variety of interactive games — from heart-pumping shooters to mind-bending puzzles. 
             Everything you need for an epic group experience.
           </p>
         </motion.div>
@@ -512,9 +512,15 @@ function Footer() {
     <footer className="py-12 px-6 border-t border-white/10">
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div>
-            <h3 className="font-display text-2xl font-bold gradient-text">VR Realm</h3>
-            <p className="text-vr-gray text-sm mt-1">Immersive experiences for teams</p>
+          <div className="flex items-center gap-3">
+            <img src="/movevr_icon.svg" alt="Move VR" className="w-10 h-10" />
+            <div>
+              <h3 className="font-display text-xl font-bold">
+                <span className="text-white">MOVE</span>
+                <span className="gradient-text">VR</span>
+              </h3>
+              <p className="text-vr-gray text-xs">Interactive Team Experiences</p>
+            </div>
           </div>
           
           <div className="flex gap-6">
@@ -526,10 +532,37 @@ function Footer() {
         </div>
         
         <div className="mt-8 pt-8 border-t border-white/5 text-center text-vr-gray text-sm">
-          <p>&copy; {new Date().getFullYear()} VR Realm. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Move VR. All rights reserved.</p>
         </div>
       </div>
     </footer>
+  )
+}
+
+// Header/Navbar
+function Header({ onBookingClick }: { onBookingClick: () => void }) {
+  return (
+    <header className="fixed top-0 left-0 right-0 z-40 px-4 sm:px-6 py-4">
+      <div className="container mx-auto max-w-6xl">
+        <div className="glass rounded-full px-4 sm:px-6 py-3 flex items-center justify-between shadow-elegant">
+          <a href="/" className="flex items-center gap-2 sm:gap-3">
+            <img src="/movevr_icon.svg" alt="Move VR" className="w-8 h-8 sm:w-10 sm:h-10" />
+            <div className="hidden sm:block">
+              <span className="font-display font-bold text-white">MOVE</span>
+              <span className="font-display font-bold gradient-text">VR</span>
+            </div>
+          </a>
+          <motion.button
+            onClick={onBookingClick}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-vr-cta hover:bg-vr-cta-hover text-white font-display font-semibold px-4 sm:px-6 py-2 rounded-full text-sm transition-all"
+          >
+            Book Now
+          </motion.button>
+        </div>
+      </div>
+    </header>
   )
 }
 
@@ -542,6 +575,7 @@ export default function Home() {
 
   return (
     <main className="overflow-hidden">
+      <Header onBookingClick={openBooking} />
       <HeroSection onBookingClick={openBooking} />
       <VideoSection onBookingClick={openBooking} />
       <ExperienceSection />

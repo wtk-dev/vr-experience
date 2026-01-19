@@ -1,0 +1,48 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Transparent background -->
+  
+  <!-- Modern geometric VR icon with glow effect -->
+  <defs>
+    <!-- Gradient for depth -->
+    <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff7849;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f97316;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Glow effect -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- VR Headset Icon - Centered and Scaled -->
+  <g transform="translate(50, 60)">
+    <!-- Outer headset frame with rounded edges -->
+    <rect x="0" y="0" width="100" height="70" rx="16" fill="none" stroke="url(#orangeGradient)" stroke-width="6" filter="url(#glow)"/>
+    
+    <!-- Left lens -->
+    <circle cx="30" cy="35" r="18" fill="none" stroke="#f97316" stroke-width="5"/>
+    <circle cx="30" cy="35" r="12" fill="#f97316" opacity="0.3"/>
+    
+    <!-- Right lens -->
+    <circle cx="70" cy="35" r="18" fill="none" stroke="#f97316" stroke-width="5"/>
+    <circle cx="70" cy="35" r="12" fill="#f97316" opacity="0.3"/>
+    
+    <!-- Strap left -->
+    <path d="M 0 20 Q -12 20 -12 35 Q -12 50 0 50" fill="none" stroke="#f97316" stroke-width="5" stroke-linecap="round"/>
+    
+    <!-- Strap right -->
+    <path d="M 100 20 Q 112 20 112 35 Q 112 50 100 50" fill="none" stroke="#f97316" stroke-width="5" stroke-linecap="round"/>
+    
+    <!-- Motion effect - dynamic speed lines -->
+    <g opacity="0.95">
+      <line x1="-28" y1="15" x2="-15" y2="15" stroke="#f97316" stroke-width="5" stroke-linecap="round"/>
+      <line x1="-35" y1="35" x2="-15" y2="35" stroke="#f97316" stroke-width="6" stroke-linecap="round"/>
+      <line x1="-28" y1="55" x2="-15" y2="55" stroke="#f97316" stroke-width="5" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

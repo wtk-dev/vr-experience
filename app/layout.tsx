@@ -17,18 +17,21 @@ const outfit = Outfit({
 })
 
 export const metadata: Metadata = {
-  title: 'VR Realm | Immersive Virtual Reality Experiences',
+  title: 'Move VR | Interactive Team Experiences',
   description: 'Step into the future of entertainment. Experience fully immersive VR adventures with friends, colleagues, and teams. Book your session today.',
-  keywords: 'VR experience, virtual reality, team building, corporate events, VR games, immersive entertainment',
+  keywords: 'VR experience, virtual reality, team building, corporate events, VR games, immersive entertainment, Move VR',
+  icons: {
+    icon: '/movevr_icon.svg',
+  },
   openGraph: {
-    title: 'VR Realm | Immersive Virtual Reality Experiences',
+    title: 'Move VR | Interactive Team Experiences',
     description: 'Step into the future of entertainment. Experience fully immersive VR adventures with friends, colleagues, and teams.',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'VR Realm | Immersive Virtual Reality Experiences',
+    title: 'Move VR | Interactive Team Experiences',
     description: 'Step into the future of entertainment. Experience fully immersive VR adventures with friends, colleagues, and teams.',
   },
 }

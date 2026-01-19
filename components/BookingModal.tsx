@@ -175,7 +175,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                   {/* Header */}
                   <div className="text-center mb-5 sm:mb-8">
                     <h2 className="font-display text-xl sm:text-2xl md:text-3xl font-bold mb-2">
-                      Book Your <span className="gradient-text">VR Experience</span>
+                      Book Your <span className="gradient-text">Move VR</span> Experience
                     </h2>
                     <p className="text-vr-gray text-sm sm:text-base">
                       Tell us a bit about yourself and we&apos;ll get back to you shortly

@@ -1,6 +1,6 @@
-# VR Realm - Landing Page
+# Move VR - Landing Page
 
-A sophisticated, engaging landing page for VR Realm - an immersive virtual reality experience business.
+A sophisticated, engaging landing page for Move VR - an interactive team VR experience business.
 
 ## 🚀 Features
 
