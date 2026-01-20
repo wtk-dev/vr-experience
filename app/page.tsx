@@ -373,33 +373,33 @@ function BenefitsSection() {
 function ReviewsSection() {
   const reviews = [
     {
-      name: 'Sarah Mitchell',
-      role: 'HR Director, TechCorp',
-      content: 'Our team building day was transformed by VR Realm. The setup was seamless, the games were incredible, and our team hasn\'t stopped talking about it. Best corporate event we\'ve had in years!',
+      name: 'David K.',
+      role: 'Office Manager',
+      content: 'Booked Move VR for our Friday team event and it was brilliant. Setup took about 15 minutes, then we were all in headsets playing together. Even our CEO got competitive during the shooting games!',
       rating: 5,
     },
     {
-      name: 'James Patterson',
-      role: 'Birthday Party Host',
-      content: 'Hired VR Realm for my son\'s 16th birthday. Every single kid was blown away. They handled everything professionally and the variety of games kept everyone entertained for hours.',
+      name: 'Rachel M.',
+      role: 'Party Organizer',
+      content: 'Had them come to my husband\'s 40th birthday. Honestly wasn\'t sure if VR would work for a mixed age group but everyone from the kids to the grandparents had a go. Really fun evening.',
       rating: 5,
     },
     {
-      name: 'Emma Rodriguez',
-      role: 'Marketing Manager, StartupXYZ',
-      content: 'We wanted something different for our quarterly team meetup. VR Realm delivered beyond expectations. Watching our remote team finally connect in virtual reality was magical.',
+      name: 'Tom B.',
+      role: 'Team Lead',
+      content: 'Way better than another boring escape room. The puzzle games actually got people talking and working together. Few of us are still trying to beat each other\'s scores weeks later.',
       rating: 5,
     },
     {
-      name: 'Michael Chen',
-      role: 'Operations Lead, Finance Plus',
-      content: 'The team building aspect was genuine. Working together in VR puzzles revealed new strengths in our team members. Plus, the competitive games added the perfect amount of fun rivalry!',
+      name: 'Sophie L.',
+      role: 'HR Coordinator',
+      content: 'We had 20 people and they brought enough headsets for everyone. No waiting around, everyone playing at once. The team loved it and it was actually within budget.',
       rating: 5,
     },
     {
-      name: 'Lisa Thompson',
-      role: 'Event Coordinator',
-      content: 'I\'ve organized countless corporate events, and this was by far the most engaging. Staff were professional, equipment was top-notch, and guests were absolutely thrilled.',
+      name: 'Marcus J.',
+      role: 'Startup Founder',
+      content: 'Used Move VR for our company away day. Perfect icebreaker for the new hires. Nothing bonds a team like watching your manager panic in a zombie game.',
       rating: 5,
     },
   ]
